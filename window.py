@@ -53,7 +53,7 @@ def show() -> None:
     query_name = entry.get()
 
     try:
-        similar_names = search(query_name)
+        similar_names = search(query_name, dataset)
         # similar_names = ['all_souls_000000', 'all_souls_000001', 'all_souls_000002', 'all_souls_000003', 'all_souls_000005']
         images = [ImageTk.PhotoImage(Image.open( dataset + f"/{name}.jpg" ).resize((200,200)))
                   for name in similar_names]

@@ -16,7 +16,7 @@ def get_descriptor(path) -> 'tuple[tuple, numpy.ndarray]':
 
     return keypoint, descriptor
 
-def find_similar_image(query_descriptor) -> list:
+def find_similar_image(query_descriptor, dataset) -> list:
     """
     KD树寻找最相似的图片
 
@@ -32,7 +32,7 @@ def find_similar_image(query_descriptor) -> list:
     flann = cv2.FlannBasedMatcher(indexParams, searchParams) # FLANN匹配器
 
     
-    paths = glob.glob('bupt/*.jpg')
+    paths = glob.glob(dataset + '/*.jpg')
     paths.sort()
 
     mean_list = []
@@ -44,39 +44,41 @@ def find_similar_image(query_descriptor) -> list:
         mean_list.append( {'path':jpg_path, 
                            'mean':numpy.mean([x.distance for x in matches[:50]])} )
         
-        # print_info(jpg_path, matches)
+        print_info(jpg_path, matches)
     
     mean_list = sorted(mean_list, key=lambda x: x['mean'])
 
     return mean_list
 
-# def print_info(jpg_path, matches) -> None:
-#     """
-#     寻找过程中打印日志
+def print_info(jpg_path, matches) -> None:
+    """
+    寻找过程中打印日志
 
-#     jpg_path: 当前处理图片的相对路径
-#     matches: matches数组, 已经经过排序
-#     return: None
-#     """
+    dataset: 当前处理的数据集名称
+    jpg_path: 当前处理图片的相对路径
+    matches: matches数组, 已经经过排序
+    return: None
+    """
 
-#     print(f'-----Now is computing {jpg_path}-----')
-#     print(f'the sorted matches is {matches}')
+    print(f'-----Now is computing {jpg_path}-----')
+    print(f'the sorted matches is {matches}')
 
 
 
-def search(name) -> list:
+def search(name, dataset) -> list:
     """
     搜索最相似的5张图片的名称
-    
+
+    dataset: 当前处理的数据集名称
     name: dataset中的图片名称,不含.jpg后缀
     return: 最相似的5张图片的名称组成的list, 不含.jpg后缀
     """
     
-    path = 'bupt/' + name + '.jpg'
+    path = dataset + '/' + name + '.jpg'
 
     _, query_descriptor = get_descriptor(path)
 
-    mean_list = find_similar_image(query_descriptor)
+    mean_list = find_similar_image(query_descriptor, dataset)
 
     name_list = []
 
@@ -90,4 +92,4 @@ def search(name) -> list:
 
 
 if __name__ == '__main__':
-    print(search('bupt2'))
+    print(search('bupt2', 'bupt'))

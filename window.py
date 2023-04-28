@@ -38,8 +38,7 @@ def preshow() -> None:
         label = Label(newwindow, text='图片不存在！', font=('Helvetica', 18))
         label.pack()
 
-    except:
-        pass
+
 
 def show() -> None:
     """
@@ -51,6 +50,9 @@ def show() -> None:
     global dataset
 
     query_name = entry.get()
+
+    print(dataset)
+    print(query_name)
 
     try:
         similar_names = search(query_name, dataset)
@@ -75,15 +77,14 @@ def show() -> None:
         label = Label(newwindow, text='图片不存在！', font=('Helvetica', 18))
         label.pack()
 
-    except:
-        pass
+
 
 
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", help="选择使用的图片数据集")
+    parser.add_argument("--dataset", help="选择使用的图片数据集", default='oxford')
 
     args = parser.parse_args()
     

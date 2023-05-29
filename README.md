@@ -6,7 +6,7 @@ CV课设，选题一。
 
 ## 运行方法
 
-1. [下载数据集](https://www.robots.ox.ac.uk/~vgg/data/oxbuildings/oxbuild_images.tgz)，然后在app.py文件中更改dataset_path路径。
+1. [下载数据集](https://www.robots.ox.ac.uk/~vgg/data/oxbuildings/oxbuild_images.tgz)，然后在运行app.py时添加-path参数。
 
     _如果需要单独运行search.py，还需要单独更改该文件中的路径_
 
@@ -25,5 +25,5 @@ CV课设，选题一。
 4. 部署项目到本地，端口号可以在app.py文件中更改。
 
     ```
-    $ python ./app.py
+    $ python ./app.py -path your_dataset_path
     ```

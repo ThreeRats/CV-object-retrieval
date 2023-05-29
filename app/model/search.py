@@ -206,6 +206,6 @@ if __name__ == '__main__':
     # get_des_list()
     # get_des_mat()
     # cluster(k)
-    print(search('all_souls_000051', 'E:/AllDownLoad/images/', k))
+    print(search('all_souls_000051', '../images/', k))
 
     # pass

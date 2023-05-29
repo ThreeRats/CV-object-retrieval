@@ -4,7 +4,7 @@ from utils import Base64Encoding, Base64Decoding
 from time import time
 
 # your dataset path
-dataset_path = 'E:/AllDownLoad/images/'
+dataset_path = './images/'
 app = Flask(__name__)
 
 @app.route('/')

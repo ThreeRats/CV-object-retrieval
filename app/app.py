@@ -2,9 +2,8 @@ from flask import Flask, render_template, jsonify, request
 from model.search import search_similar_image
 from utils import Base64Encoding, Base64Decoding
 from time import time
+import argparse
 
-# your dataset path
-dataset_path = './images/'
 app = Flask(__name__)
 
 @app.route('/')
@@ -37,4 +36,8 @@ def search_image():
     return jsonify(json_dict)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-path")
+    args = parser.parse_args()
+    dataset_path = args.path
     app.run(port=5500)

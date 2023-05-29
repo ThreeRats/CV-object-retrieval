@@ -25,5 +25,5 @@ CV课设，选题一。
 4. 部署项目到本地，端口号可以在app.py文件中更改。
 
     ```
-    $ python ./app.py -path your_dataset_path
+    $ python ./app.py -path your_dataset_path -port your_port
     ```

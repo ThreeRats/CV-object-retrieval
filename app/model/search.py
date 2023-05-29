@@ -193,8 +193,11 @@ def search_similar_image(query_image, dataset_path, k=300) -> list:
     """
     # 首先转换为cv2
     query_image = cv2.cvtColor(np.asarray(query_image), cv2.COLOR_RGB2BGR)
+    # 获得图片的描述子
     _, query_descriptor = get_descriptor(None, query_image)
+    # 获得最相似的图片的路径
     path_list = find_similar_image(query_descriptor, dataset_path, k)
+    # 返回检索结果
     similar_images = [Image.open(path) for path in path_list]
     return similar_images
 

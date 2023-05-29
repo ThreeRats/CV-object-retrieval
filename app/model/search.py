@@ -104,6 +104,7 @@ def get_feature_vec(des, k) -> list:
     得到一张图片对应的k维特征向量
 
     des: 一张图片的描述子
+    k: 模型进行kmeans的簇个数
     return: list
     """
 
@@ -126,6 +127,7 @@ def find_similar_image(query_descriptor, dataset, k) -> list:
 
     name: 图片名称, 方便寻找label, 不含.jpg后缀
     query_descriptor: 待查询图片的描述子
+    k: 模型进行kmeans的簇个数
     return: path_list 每一项path是该图片的相对路径(含有jpg后缀)
     """
 
@@ -169,6 +171,7 @@ def search(name, dataset, k) -> list:
 
     dataset: 当前处理的数据集名称
     name: dataset中的图片名称,不含.jpg后缀
+    k: 模型进行kmeans的簇个数
     return: 最相似的5张图片的名称组成的list, 不含.jpg后缀
     """
     
